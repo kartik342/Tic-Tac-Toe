@@ -10,6 +10,11 @@ A simple and fun 2-player Tic Tac Toe game built using **HTML**, **CSS**, and **
 - 🔄 Restart and New Game buttons
 - 📦 No frameworks, just pure HTML/CSS/JS
 
+## 🖥️ Demo
+
+![Game Screenshot](Screenshot 2025-07-10 160503.png) 
+
+
 ## 🛠️ Tech Stack
 
 - **HTML** – for structure  
