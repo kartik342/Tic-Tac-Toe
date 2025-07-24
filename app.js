@@ -24,27 +24,30 @@ boxes.forEach((box)=>{
     box.addEventListener("click", ()=>{
 
         if(turnO){ // player O trun
-            box.innerHTML = "O";
+            box.textContent = "O";
             turnO = false;
         }
         else{    // player X turn
-            box.innerHTML = "X";
+            box.textContent = "X";
             turnO = true;
         }
         box.disabled = true;
 
-        checkWinner();
+        let isWinner = checkWinner();
 
-        count += 1;
-        if(count == 9){
-            drawGame();
+        if(!isWinner){
+            count += 1;
+            if(count === 9){
+                drawGame();
+            }
         }
     })
 })
 
 function drawGame(){
     disableBoxes();
-    alert("It's a Draw");
+    msg.innerText = `It is a Draw`;
+    msgContainer.classList.remove("hide");
 }
 function restartGame(){
     count = 0;
@@ -65,7 +68,7 @@ function disableBoxes(){
 }
 
 function showWinner(winner){
-    msg.innerText = `Congratuations, Winner is ${winner}`;
+    msg.innerText = `Congratulations, Winner is ${winner}`;
     msgContainer.classList.remove("hide");
 
     disableBoxes();
@@ -73,17 +76,18 @@ function showWinner(winner){
 
 function checkWinner(){
     for(let pattern of winPatterns){
-        let pos1Val = boxes[pattern[0]].innerHTML;
-        let pos2Val = boxes[pattern[1]].innerHTML;
-        let pos3Val = boxes[pattern[2]].innerHTML;
+        let pos1Val = boxes[pattern[0]].textContent;
+        let pos2Val = boxes[pattern[1]].textContent;
+        let pos3Val = boxes[pattern[2]].textContent;
 
         if((pos1Val != "") && (pos2Val != "") && (pos3Val != "")){
             if((pos1Val === pos2Val) && (pos2Val === pos3Val)){
                 showWinner(pos1Val);
+                return true;
             }
         }
-
     }
+    return false;
 }
 
 newGameBtn.addEventListener("click", restartGame);
